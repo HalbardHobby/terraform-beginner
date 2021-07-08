@@ -22,7 +22,7 @@ resource "docker_image" "nginx" {
 # The resources contain arguments for configuration.
 resource "docker_container" "nginx" {
   image = docker_image.nginx.latest
-  name  = "tutorial"
+  name  = var.container_name
   ports {
     internal = 80
     external = 8000
