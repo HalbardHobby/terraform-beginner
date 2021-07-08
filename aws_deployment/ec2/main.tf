@@ -12,19 +12,11 @@ provider "aws" {
   region  = "us-east-2"
 }
 
-resource "aws_vpc" "vpc_main" {
-  cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "default"
+resource "aws_instance" "ec2_instance" {
+  ami           = "ami-0277b52859bac6f4b"
+  instance_type = "t2.micro"
 
   tags = {
-    Name = "TF_vpc"
+    Name = "TF_instance"
   }
-}
-
-module "ec2" {
-  source = "./ec2"
-}
-
-module "rds" {
-  source = "./RDS"
 }
