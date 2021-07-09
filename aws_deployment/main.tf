@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_vpc" "vpc_main" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block       = "161.0.0.0/16"
   instance_tenancy = "default"
 
   tags = {
@@ -21,29 +21,17 @@ resource "aws_vpc" "vpc_main" {
   }
 }
 
-resource "aws_subnet" "private_subnet" {
-  vpc_id     = aws_vpc.vpc_main.id
-  cidr_block = "10.0.1.0/24"
-
-  tags = {
-    Name = "TF_private_subnet"
-  }
-}
-
-resource "aws_subnet" "public_subnet" {
-  vpc_id     = aws_vpc.vpc_main.id
-  cidr_block = "10.0.2.0/24"
-  map_public_ip_on_launch = true
-
-  tags = {
-    Name = "TF_public_subnet"
-  }
-}
-
 module "ec2" {
   source = "./ec2"
+
+  vpc_id     = aws_vpc.vpc_main.id
+  cidr_block = "161.0.11.0/24"
 }
 
 module "rds" {
   source = "./RDS"
+
+  vpc_id     = aws_vpc.vpc_main.id
+  cidr_block_0 = "161.0.151.0/24"
+  cidr_block_1 = "161.0.121.0/24"
 }
