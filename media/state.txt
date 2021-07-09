@@ -1,0 +1,282 @@
+[0m# module.ec2.aws_instance.ec2_instance:
+resource "aws_instance" "ec2_instance" {
+    [1m[0mami[0m[0m                                  = "ami-0277b52859bac6f4b"
+    [1m[0marn[0m[0m                                  = "arn:aws:ec2:us-east-2:509130302659:instance/i-0fc51152ba2a1df12"
+    [1m[0massociate_public_ip_address[0m[0m          = true
+    [1m[0mavailability_zone[0m[0m                    = "us-east-2a"
+    [1m[0mcpu_core_count[0m[0m                       = 1
+    [1m[0mcpu_threads_per_core[0m[0m                 = 1
+    [1m[0mdisable_api_termination[0m[0m              = false
+    [1m[0mebs_optimized[0m[0m                        = false
+    [1m[0mget_password_data[0m[0m                    = false
+    [1m[0mhibernation[0m[0m                          = false
+    [1m[0mid[0m[0m                                   = "i-0fc51152ba2a1df12"
+    [1m[0minstance_initiated_shutdown_behavior[0m[0m = "stop"
+    [1m[0minstance_state[0m[0m                       = "running"
+    [1m[0minstance_type[0m[0m                        = "t2.micro"
+    [1m[0mipv6_address_count[0m[0m                   = 0
+    [1m[0mipv6_addresses[0m[0m                       = []
+    [1m[0mmonitoring[0m[0m                           = false
+    [1m[0mprimary_network_interface_id[0m[0m         = "eni-0dec00dccc7bda886"
+    [1m[0mprivate_dns[0m[0m                          = "ip-161-0-11-234.us-east-2.compute.internal"
+    [1m[0mprivate_ip[0m[0m                           = "161.0.11.234"
+    [1m[0mpublic_ip[0m[0m                            = "18.223.210.145"
+    [1m[0msecondary_private_ips[0m[0m                = []
+    [1m[0msecurity_groups[0m[0m                      = [
+        "sg-0ce96a764e5d46a31",
+    ]
+    [1m[0msource_dest_check[0m[0m                    = true
+    [1m[0msubnet_id[0m[0m                            = "subnet-0d4b40d3e787abc43"
+    [1m[0mtags[0m[0m                                 = {
+        "Name" = "TF_instance"
+    }
+    [1m[0mtags_all[0m[0m                             = {
+        "Name" = "TF_instance"
+    }
+    [1m[0mtenancy[0m[0m                              = "default"
+    [1m[0mvpc_security_group_ids[0m[0m               = [
+        "sg-0ce96a764e5d46a31",
+    ]
+
+    capacity_reservation_specification {
+        [1m[0mcapacity_reservation_preference[0m[0m = "open"
+    }
+
+    credit_specification {
+        [1m[0mcpu_credits[0m[0m = "standard"
+    }
+
+    enclave_options {
+        [1m[0menabled[0m[0m = false
+    }
+
+    metadata_options {
+        [1m[0mhttp_endpoint[0m[0m               = "enabled"
+        [1m[0mhttp_put_response_hop_limit[0m[0m = 1
+        [1m[0mhttp_tokens[0m[0m                 = "optional"
+    }
+
+    root_block_device {
+        [1m[0mdelete_on_termination[0m[0m = true
+        [1m[0mdevice_name[0m[0m           = "/dev/xvda"
+        [1m[0mencrypted[0m[0m             = false
+        [1m[0miops[0m[0m                  = 100
+        [1m[0mtags[0m[0m                  = {}
+        [1m[0mthroughput[0m[0m            = 0
+        [1m[0mvolume_id[0m[0m             = "vol-0070464d6462b5c89"
+        [1m[0mvolume_size[0m[0m           = 8
+        [1m[0mvolume_type[0m[0m           = "gp2"
+    }
+}
+
+# module.ec2.aws_subnet.public_subnet:
+resource "aws_subnet" "public_subnet" {
+    [1m[0marn[0m[0m                             = "arn:aws:ec2:us-east-2:509130302659:subnet/subnet-0d4b40d3e787abc43"
+    [1m[0massign_ipv6_address_on_creation[0m[0m = false
+    [1m[0mavailability_zone[0m[0m               = "us-east-2a"
+    [1m[0mavailability_zone_id[0m[0m            = "use2-az1"
+    [1m[0mcidr_block[0m[0m                      = "161.0.11.0/24"
+    [1m[0mid[0m[0m                              = "subnet-0d4b40d3e787abc43"
+    [1m[0mmap_customer_owned_ip_on_launch[0m[0m = false
+    [1m[0mmap_public_ip_on_launch[0m[0m         = true
+    [1m[0mowner_id[0m[0m                        = "509130302659"
+    [1m[0mtags[0m[0m                            = {
+        "Name" = "TF_public_subnet"
+    }
+    [1m[0mtags_all[0m[0m                        = {
+        "Name" = "TF_public_subnet"
+    }
+    [1m[0mvpc_id[0m[0m                          = "vpc-0af6495d0ebbbfb48"
+}
+
+
+# module.rds.aws_db_instance.rds_instance:
+resource "aws_db_instance" "rds_instance" {
+    [1m[0maddress[0m[0m                               = "terraform-20210709183026363100000001.cwpxlo0i1zk7.us-east-2.rds.amazonaws.com"
+    [1m[0mallocated_storage[0m[0m                     = 10
+    [1m[0marn[0m[0m                                   = "arn:aws:rds:us-east-2:509130302659:db:terraform-20210709183026363100000001"
+    [1m[0mauto_minor_version_upgrade[0m[0m            = true
+    [1m[0mavailability_zone[0m[0m                     = "us-east-2b"
+    [1m[0mbackup_retention_period[0m[0m               = 0
+    [1m[0mbackup_window[0m[0m                         = "09:56-10:26"
+    [1m[0mca_cert_identifier[0m[0m                    = "rds-ca-2019"
+    [1m[0mcopy_tags_to_snapshot[0m[0m                 = false
+    [1m[0mdb_subnet_group_name[0m[0m                  = "main"
+    [1m[0mdelete_automated_backups[0m[0m              = true
+    [1m[0mdeletion_protection[0m[0m                   = false
+    [1m[0mendpoint[0m[0m                              = "terraform-20210709183026363100000001.cwpxlo0i1zk7.us-east-2.rds.amazonaws.com:5432"
+    [1m[0mengine[0m[0m                                = "postgres"
+    [1m[0mengine_version[0m[0m                        = "13.3"
+    [1m[0mhosted_zone_id[0m[0m                        = "Z2XHWR1WZ565X2"
+    [1m[0miam_database_authentication_enabled[0m[0m   = false
+    [1m[0mid[0m[0m                                    = "terraform-20210709183026363100000001"
+    [1m[0midentifier[0m[0m                            = "terraform-20210709183026363100000001"
+    [1m[0minstance_class[0m[0m                        = "db.t3.micro"
+    [1m[0miops[0m[0m                                  = 0
+    [1m[0mlatest_restorable_time[0m[0m                = "0001-01-01T00:00:00Z"
+    [1m[0mlicense_model[0m[0m                         = "postgresql-license"
+    [1m[0mmaintenance_window[0m[0m                    = "sun:04:36-sun:05:06"
+    [1m[0mmax_allocated_storage[0m[0m                 = 0
+    [1m[0mmonitoring_interval[0m[0m                   = 0
+    [1m[0mmulti_az[0m[0m                              = false
+    [1m[0mname[0m[0m                                  = "TF_db"
+    [1m[0moption_group_name[0m[0m                     = "default:postgres-13"
+    [1m[0mparameter_group_name[0m[0m                  = "default.postgres13"
+    [1m[0mpassword[0m[0m                              = (sensitive value)
+    [1m[0mperformance_insights_enabled[0m[0m          = false
+    [1m[0mperformance_insights_retention_period[0m[0m = 0
+    [1m[0mport[0m[0m                                  = 5432
+    [1m[0mpublicly_accessible[0m[0m                   = false
+    [1m[0mreplicas[0m[0m                              = []
+    [1m[0mresource_id[0m[0m                           = "db-ZULCFCI6QU3KD5WJK5ZSS5VEVA"
+    [1m[0mskip_final_snapshot[0m[0m                   = true
+    [1m[0mstatus[0m[0m                                = "available"
+    [1m[0mstorage_encrypted[0m[0m                     = false
+    [1m[0mstorage_type[0m[0m                          = "gp2"
+    [1m[0mtags[0m[0m                                  = {
+        "Name" = "TF_db"
+    }
+    [1m[0mtags_all[0m[0m                              = {
+        "Name" = "TF_db"
+    }
+    [1m[0musername[0m[0m                              = "example"
+    [1m[0mvpc_security_group_ids[0m[0m                = [
+        "sg-08bfe6e5e4f656619",
+    ]
+}
+
+# module.rds.aws_db_subnet_group.db_subnet:
+resource "aws_db_subnet_group" "db_subnet" {
+    [1m[0marn[0m[0m         = "arn:aws:rds:us-east-2:509130302659:subgrp:main"
+    [1m[0mdescription[0m[0m = "Managed by Terraform"
+    [1m[0mid[0m[0m          = "main"
+    [1m[0mname[0m[0m        = "main"
+    [1m[0msubnet_ids[0m[0m  = [
+        "subnet-02224aa0fe60477cd",
+        "subnet-07d4e74301ac9f9a4",
+    ]
+    [1m[0mtags[0m[0m        = {
+        "Name" = "TF_db_subnet"
+    }
+    [1m[0mtags_all[0m[0m    = {
+        "Name" = "TF_db_subnet"
+    }
+}
+
+# module.rds.aws_subnet.private_subnet_0:
+resource "aws_subnet" "private_subnet_0" {
+    [1m[0marn[0m[0m                             = "arn:aws:ec2:us-east-2:509130302659:subnet/subnet-02224aa0fe60477cd"
+    [1m[0massign_ipv6_address_on_creation[0m[0m = false
+    [1m[0mavailability_zone[0m[0m               = "us-east-2a"
+    [1m[0mavailability_zone_id[0m[0m            = "use2-az1"
+    [1m[0mcidr_block[0m[0m                      = "161.0.151.0/24"
+    [1m[0mid[0m[0m                              = "subnet-02224aa0fe60477cd"
+    [1m[0mmap_customer_owned_ip_on_launch[0m[0m = false
+    [1m[0mmap_public_ip_on_launch[0m[0m         = false
+    [1m[0mowner_id[0m[0m                        = "509130302659"
+    [1m[0mtags[0m[0m                            = {
+        "Name" = "TF_private_subnet_0"
+    }
+    [1m[0mtags_all[0m[0m                        = {
+        "Name" = "TF_private_subnet_0"
+    }
+    [1m[0mvpc_id[0m[0m                          = "vpc-0af6495d0ebbbfb48"
+}
+
+# module.rds.aws_subnet.private_subnet_1:
+resource "aws_subnet" "private_subnet_1" {
+    [1m[0marn[0m[0m                             = "arn:aws:ec2:us-east-2:509130302659:subnet/subnet-07d4e74301ac9f9a4"
+    [1m[0massign_ipv6_address_on_creation[0m[0m = false
+    [1m[0mavailability_zone[0m[0m               = "us-east-2b"
+    [1m[0mavailability_zone_id[0m[0m            = "use2-az2"
+    [1m[0mcidr_block[0m[0m                      = "161.0.121.0/24"
+    [1m[0mid[0m[0m                              = "subnet-07d4e74301ac9f9a4"
+    [1m[0mmap_customer_owned_ip_on_launch[0m[0m = false
+    [1m[0mmap_public_ip_on_launch[0m[0m         = false
+    [1m[0mowner_id[0m[0m                        = "509130302659"
+    [1m[0mtags[0m[0m                            = {
+        "Name" = "TF_private_subnet_1"
+    }
+    [1m[0mtags_all[0m[0m                        = {
+        "Name" = "TF_private_subnet_1"
+    }
+    [1m[0mvpc_id[0m[0m                          = "vpc-0af6495d0ebbbfb48"
+}
+
+
+# aws_security_group.db_group:
+resource "aws_security_group" "db_group" {
+    [1m[0marn[0m[0m                    = "arn:aws:ec2:us-east-2:509130302659:security-group/sg-08bfe6e5e4f656619"
+    [1m[0mdescription[0m[0m            = "Allow traffic only from servers"
+    [1m[0megress[0m[0m                 = []
+    [1m[0mid[0m[0m                     = "sg-08bfe6e5e4f656619"
+    [1m[0mingress[0m[0m                = []
+    [1m[0mname[0m[0m                   = "TF_db_group"
+    [1m[0mowner_id[0m[0m               = "509130302659"
+    [1m[0mrevoke_rules_on_delete[0m[0m = false
+    [1m[0mtags_all[0m[0m               = {}
+    [1m[0mvpc_id[0m[0m                 = "vpc-0af6495d0ebbbfb48"
+}
+
+# aws_security_group.server_group:
+resource "aws_security_group" "server_group" {
+    [1m[0marn[0m[0m                    = "arn:aws:ec2:us-east-2:509130302659:security-group/sg-0ce96a764e5d46a31"
+    [1m[0mdescription[0m[0m            = "Allow http inbound traffic"
+    [1m[0megress[0m[0m                 = []
+    [1m[0mid[0m[0m                     = "sg-0ce96a764e5d46a31"
+    [1m[0mingress[0m[0m                = [
+        {
+            cidr_blocks      = [
+                "0.0.0.0/0",
+            ]
+            description      = "TLS from VPC"
+            from_port        = 80
+            ipv6_cidr_blocks = []
+            prefix_list_ids  = []
+            protocol         = "tcp"
+            security_groups  = []
+            self             = false
+            to_port          = 80
+        },
+    ]
+    [1m[0mname[0m[0m                   = "TF_server_group"
+    [1m[0mowner_id[0m[0m               = "509130302659"
+    [1m[0mrevoke_rules_on_delete[0m[0m = false
+    [1m[0mtags_all[0m[0m               = {}
+    [1m[0mvpc_id[0m[0m                 = "vpc-0af6495d0ebbbfb48"
+}
+
+# aws_security_group_rule.allow_inggress_from_servers:
+resource "aws_security_group_rule" "allow_inggress_from_servers" {
+    [1m[0mfrom_port[0m[0m                = 0
+    [1m[0mid[0m[0m                       = "sgrule-1308170282"
+    [1m[0mprotocol[0m[0m                 = "-1"
+    [1m[0msecurity_group_id[0m[0m        = "sg-08bfe6e5e4f656619"
+    [1m[0mself[0m[0m                     = false
+    [1m[0msource_security_group_id[0m[0m = "sg-0ce96a764e5d46a31"
+    [1m[0mto_port[0m[0m                  = 65535
+    [1m[0mtype[0m[0m                     = "ingress"
+}
+
+# aws_vpc.vpc_main:
+resource "aws_vpc" "vpc_main" {
+    [1m[0marn[0m[0m                              = "arn:aws:ec2:us-east-2:509130302659:vpc/vpc-0af6495d0ebbbfb48"
+    [1m[0massign_generated_ipv6_cidr_block[0m[0m = false
+    [1m[0mcidr_block[0m[0m                       = "161.0.0.0/16"
+    [1m[0mdefault_network_acl_id[0m[0m           = "acl-0a40854e1e9ae8abb"
+    [1m[0mdefault_route_table_id[0m[0m           = "rtb-0a912dc8cdbe37f42"
+    [1m[0mdefault_security_group_id[0m[0m        = "sg-021150723668aa2d0"
+    [1m[0mdhcp_options_id[0m[0m                  = "dopt-06a2566f"
+    [1m[0menable_dns_hostnames[0m[0m             = false
+    [1m[0menable_dns_support[0m[0m               = true
+    [1m[0mid[0m[0m                               = "vpc-0af6495d0ebbbfb48"
+    [1m[0minstance_tenancy[0m[0m                 = "default"
+    [1m[0mmain_route_table_id[0m[0m              = "rtb-0a912dc8cdbe37f42"
+    [1m[0mowner_id[0m[0m                         = "509130302659"
+    [1m[0mtags[0m[0m                             = {
+        "Name" = "TF_vpc"
+    }
+    [1m[0mtags_all[0m[0m                         = {
+        "Name" = "TF_vpc"
+    }
+}[0m[0m
