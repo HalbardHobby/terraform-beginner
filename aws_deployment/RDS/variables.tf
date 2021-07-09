@@ -10,3 +10,7 @@ variable "cidr_block_0" {
 variable "cidr_block_1" {
   type = string
 }
+
+variable "security_group_id" {
+  type = string
+}

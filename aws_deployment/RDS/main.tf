@@ -13,8 +13,8 @@ provider "aws" {
 }
 
 resource "aws_subnet" "private_subnet_0" {
-  vpc_id     = var.vpc_id
-  cidr_block = var.cidr_block_0
+  vpc_id            = var.vpc_id
+  cidr_block        = var.cidr_block_0
   availability_zone = "us-east-2a"
 
   tags = {
@@ -23,8 +23,8 @@ resource "aws_subnet" "private_subnet_0" {
 }
 
 resource "aws_subnet" "private_subnet_1" {
-  vpc_id     = var.vpc_id
-  cidr_block = var.cidr_block_1
+  vpc_id            = var.vpc_id
+  cidr_block        = var.cidr_block_1
   availability_zone = "us-east-2b"
 
   tags = {
@@ -51,7 +51,8 @@ resource "aws_db_instance" "rds_instance" {
   password            = "example123"
   skip_final_snapshot = true
 
-  db_subnet_group_name = aws_db_subnet_group.db_subnet.name
+  db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
+  vpc_security_group_ids = [var.security_group_id]
 
   tags = {
     Name = "TF_db"
